@@ -2,6 +2,8 @@ use hyper::{Body, Response};
 use hyper::body as BodyParser;
 use std::env;
 
+pub const OPEN_WEATHER_API_URL: &str = "https://api.openweathermap.org/data/2.5";
+
 pub enum Env {
     OpenWeatherApiKey,
     OpenWeatherApiUrl
