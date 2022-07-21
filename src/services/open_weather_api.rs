@@ -1,5 +1,3 @@
-use std::env;
-
 use hyper::{Client, Request, Method, Body, client::{ResponseFuture, HttpConnector}};
 use hyper_tls::HttpsConnector;
 
