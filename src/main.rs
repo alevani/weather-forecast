@@ -47,7 +47,7 @@ async fn main() {
     The sun will rise at {} and set at {}
     It is currently {}°C but it feels like {}°C.
 
-    The current weather status is: {}
+    The current weather status is: {} (weather type : {})
     ",
     city.name,
     //todo: Add a 2 hours UTC for the CPH city
@@ -55,7 +55,8 @@ async fn main() {
     Utc.timestamp(current_weather_data.current.sunset, 0).time(),
     current_weather_data.current.temp,
     current_weather_data.current.feels_like,
-    current_weather_data.current.weather[0].description // todo find out why there can be more ..?
+    current_weather_data.current.weather[0].description, // todo find out why there can be more ..?
+    current_weather_data.current.weather[0].main
     );
 
     // todo map  rain icon to emoji

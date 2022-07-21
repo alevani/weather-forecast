@@ -1,3 +1,5 @@
+use std::fmt;
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
@@ -26,6 +28,36 @@ pub struct AlertsData {
 
 #[derive(Serialize, Deserialize)]
 pub struct WeatherData {
-    pub main: String,
+    pub main: WeatherType,
     pub description: String,
+}
+
+#[derive(Serialize, Deserialize, Default, Debug)]
+
+pub enum WeatherType {
+    Thunderstorm,
+    Drizzle,
+    Rain,
+    Snow,
+    Mist,
+    Smoke,
+    Haze,
+    Dust,
+    Fog,
+    Sand,
+    Ash,
+    Squall,
+    Tornado,
+    Clear,
+    Clouds,
+
+    #[default]
+    NoWeatherTypeReturned
+}
+
+
+impl fmt::Display for WeatherType {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:?}", self)
+    }
 }
