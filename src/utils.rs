@@ -6,13 +6,11 @@ pub const OPEN_WEATHER_API_URL: &str = "https://api.openweathermap.org/data/2.5"
 
 pub enum Env {
     OpenWeatherApiKey,
-    OpenWeatherApiUrl
 }
 
 pub fn get_env(key: Env) -> String {
     let key = match key {
-        Env::OpenWeatherApiKey => "OPEN_WEATHER_API_KEY",
-        Env::OpenWeatherApiUrl => "OPEN_WEATHER_API_URL",
+        Env::OpenWeatherApiKey => "OPEN_WEATHER_API_KEY"
     };
 
     return match env::var(key) {
