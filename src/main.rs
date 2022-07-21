@@ -35,7 +35,10 @@ async fn main() {
     // Parse it to program usable data
     let current_weather_data = match parse_response::<OpenWeatherApiOneCallResponse>(current_weather_raw_data).await {
         Ok(content) => content,
-        Err(_) => panic!("Could not parse content of current_weather_raw_data")
+        Err(err) => {
+            println!("{}", err);
+            panic!("Could not parse content of current_weather_raw_data")
+        }
     };
 
     println!(
@@ -43,12 +46,18 @@ async fn main() {
     Current weather information for {}:
     The sun will rise at {} and set at {}
     It is currently {}°C but it feels like {}°C.
+
+    The current weather status is: {}
     ",
     city.name,
     //todo: Add a 2 hours UTC for the CPH city
     Utc.timestamp(current_weather_data.current.sunrise, 0).time(),
     Utc.timestamp(current_weather_data.current.sunset, 0).time(),
     current_weather_data.current.temp,
-    current_weather_data.current.feels_like
+    current_weather_data.current.feels_like,
+    current_weather_data.current.weather[0].description // todo find out why there can be more ..?
     );
+
+    // todo map  rain icon to emoji
+    // https://openweathermap.org/weather-conditions#How-to-get-icon-URL
 }
