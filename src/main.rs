@@ -14,9 +14,12 @@ use models::city::*;
 pub mod services;
 use services::open_weather_api::*;
 
+use dotenv::dotenv;
+
 #[tokio::main]
 async fn main() {
     pretty_env_logger::init();
+    dotenv().ok();
 
     let city = City { lat: 55.676098, long: 12.568337, name: String::from("Copenhagen") };
     
